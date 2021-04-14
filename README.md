@@ -1,6 +1,7 @@
 # Not Enough Characters
 
 一个改进 1.7.10 中 NEI 搜索功能的 mod，让 NEI 支持拼音搜索与 JEI 风格的关键字匹配
+1.1版本开始增加了其他mod的兼容
 
 ## 主要功能
 
