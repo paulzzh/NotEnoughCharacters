@@ -70,15 +70,16 @@ public class NecharSearchFilter implements ItemFilter {
     @Override
     public boolean matches(ItemStack itemStack) {
         return !invalid
-            && matchesMod(itemStack)
-            && matchesId(itemStack)
-            && matchesDict(itemStack)
-            && matchesKeywords(itemStack);
+                && matchesMod(itemStack)
+                && matchesId(itemStack)
+                && matchesDict(itemStack)
+                && matchesKeywords(itemStack);
     }
 
     protected boolean matchesMod(ItemStack itemStack) {
-        if (mod == null || mod.isEmpty())
+        if (mod == null || mod.isEmpty()) {
             return true;
+        }
 
         GameRegistry.UniqueIdentifier itemId = GameRegistry.findUniqueIdentifierFor(itemStack.getItem());
 
@@ -86,8 +87,9 @@ public class NecharSearchFilter implements ItemFilter {
     }
 
     protected boolean matchesId(ItemStack itemStack) {
-        if (id == null || id.isEmpty())
+        if (id == null || id.isEmpty()) {
             return true;
+        }
 
         String itemId = Item.itemRegistry.getNameForObject(itemStack.getItem());
 
@@ -95,27 +97,31 @@ public class NecharSearchFilter implements ItemFilter {
     }
 
     protected boolean matchesDict(ItemStack itemStack) {
-        if (dict == null || dict.isEmpty())
+        if (dict == null || dict.isEmpty()) {
             return true;
+        }
 
         int[] oreIds = OreDictionary.getOreIDs(itemStack);
 
-        for (int id : oreIds)
+        for (int id : oreIds) {
             if (OreDictionary.getOreName(id).toLowerCase().contains(dict))
                 return true;
+        }
 
         return false;
     }
 
     protected boolean matchesKeywords(ItemStack itemStack) {
-        if (keywords == null || keywords.isEmpty())
+        if (keywords == null || keywords.isEmpty()) {
             return true;
+        }
 
         String name = ItemInfo.getSearchName(itemStack);
-
-        for (String keyword : keywords)
-            if (!context.contains(name, keyword))
+        for (String keyword : keywords) {
+            if (!context.contains(name, keyword)) {
                 return false;
+            }
+        }
 
         return true;
     }

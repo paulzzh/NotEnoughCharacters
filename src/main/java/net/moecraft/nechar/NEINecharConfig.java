@@ -2,6 +2,7 @@ package net.moecraft.nechar;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
+import net.vfyjxf.nechar.NotEnoughCharacters;
 
 public class NEINecharConfig implements IConfigureNEI {
     @Override

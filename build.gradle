@@ -2,30 +2,46 @@ buildscript {
     repositories {
         mavenCentral()
         maven {
-            name = 'forge'
-            url = 'http://files.minecraftforge.net/maven'
+            name = "aliyun"        //阿里云
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+
+        maven {
+            name = "longan"        //龙眼 maven
+            url 'https://longan.beanflame.cn/maven'
         }
         maven {
-            name = 'sonatype'
-            url = 'https://oss.sonatype.org/content/repositories/snapshots/'
+            name = "forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+        classpath 'cn.beanflame.longangradle:ForgeLonganGradle:1.2-0.1.2-Longan'
+//        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
+//        classpath 'com.github.GTNH2:ForgeGradle:FG_1.2-SNAPSHOT'
     }
 }
 
+
 apply plugin: 'forge'
 
-version = '1.0'
-group = 'net.moecraft.nechar'
+version = '1.2'
+group = 'net.vfyjxf.nechar'
 archivesBaseName = 'NotEnoughCharacters'
 
 minecraft {
-    version = '1.7.10-10.13.4.1614-1.7.10'
-    runDir = 'eclipse'
-}
+    version = "1.7.10-10.13.4.1614-1.7.10"
+    runDir = "eclipse"
+    // 最新的 MCP 版本是 stable_12
+    //mappings = "stable_12"
+//    clientJvmArgs += "-Dfml.coreMods.load=net.vfyjxf.nechar.mixin.MixinLoadingPlugin"
+//    serverJvmArgs += "-Dfml.coreMods.load=net.vfyjxf.nechar.mixin.MixinLoadingPlugin"
 
+}
 compileJava {
     options.encoding = 'UTF-8'
     sourceCompatibility = '1.8'
@@ -38,51 +54,68 @@ repositories {
         name 'chickenbones'
         url 'http://chickenbones.net/maven'
     }
+    maven {
+        name "Modmaven"
+        url "https://modmaven.k-4u.nl/"
+        // For Gradle 5.1 and above, limit it to just AE2
+//        content {
+//            includeGroup 'appeng'
+        }
+
+        maven {
+            name = "sponge"
+            url = 'https://repo.spongepowered.org/maven'
+        }
+
+        maven {
+            name = 'Extra Cells'
+            url = 'https://maven.cil.li/ExtraCells/'
+        }
     flatDir {
         dirs 'libs'
     }
-}
+    }
+
+
 
 configurations {
+    // configuration that holds jars to include in the jar
     shade
     compile.extendsFrom shade
 }
 
+
 dependencies {
-    // you may put jars on which you depend on in ./libs
-    // or you may define them like so..
-    //compile 'some.group:artifact:version:classifier'
-    //compile 'some.group:artifact:version'
-
-    // real examples
-    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
-    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
-
-    // for more info...
-    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
-    // http://www.gradle.org/docs/current/userguide/dependency_management.html
-
     compile 'codechicken:NotEnoughItems:1.7.10-2.0.0-GTNH:dev'
     compile 'codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev'
-    compile 'codechicken:CodeChickenCore:1.7.10-1.0.7.+:dev'
+    compile 'codechicken:CodeChickenCore:1.7.10-1.0.7.47:dev'
 
+//    compile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+//    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
+//    compile "org.spongepowered:mixin:0.7.11-SNAPSHOT"
+//    compile files('libs/SpongeMixins-1.2.0.jar')
+    compile files('libs/Thaumcraft-1.7.10-4.2.3.5.jar')
+//    compile files('libs/appliedenergistics2-rv3-beta-6.jar')
+//    compile files('lib/fastutil-7.1.0.jar')
+//    compile files('lib/fastutil-7.0.12_mojang.jar')
+//    compile files('libs/ExtraCells-deobf-1.7.10-2.2.73b129.jar')
+    compile 'me.towdium:PinIn:1.2.0-all'
+//    compile files('libs/WirelessCraftingTerminal-1.7.10-rv3-1.8.7.4b.jar')
+//    compile files('libs/ExtraCells-1.7.10-2.4.3b3.jar')
+//    testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+//    compile('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+//    Mixin includes a lot of dependencies that are too up - to - date
+//        exclude module: 'launchwrapper'
+//        exclude module: 'guava'
+//        exclude module: 'gson'
+//        exclude module: 'commons-io'
+//        exclude module: 'log4j-core'
+//    }
     shade 'me.towdium:PinIn:1.2.0-all'
+//    shade "org.spongepowered:mixin:0.7.11-SNAPSHOT"
+
+
 }
-
-jar {
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)){
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
-
-    manifest {
-        attributes 'Implementation-Version': project.version
-    }
-
-    appendix project.minecraft.version
-}
-
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property 'version', project.version
@@ -93,11 +126,54 @@ processResources {
         include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'version': project.version, 'mcversion': project.minecraft.version
+        expand 'version': project.version,
+                'mcversion': project.minecraft.version
     }
 
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
+}
+
+jar {
+    configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
+        from(zipTree(artifact)) {
+            exclude 'META-INF', 'META-INF/**'
+        }
+
+        manifest.attributes(
+                'FMLCorePlugin': 'net.vfyjxf.nechar.core.NechCorePlugin',
+                'FMLCorePluginContainsFMLMod': 'true',
+                'ForceLoadAsMod': 'true'
+        )
+
+
+        appendix project.minecraft.version
+    }
+
+
+/*
+jar {
+    from refMap
+
+    configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
+        from (zipTree(artifact)){
+            exclude 'META-INF', 'META-INF/**'
+        }
+        from(project.zipTree(artifact)){
+            include 'META-INF/services', 'META-INF/services/**'
+        }
+    }
+    manifest.attributes(
+            'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+            "FMLCorePlugin":'net.vfyjxf.nechar.mixins.core.MixinLoadingPlugin',
+            'FMLCorePluginContainsFMLMod': 'true',
+            "MixinCompatibilityLevel": "JAVA_8",
+            "ForceLoadAsMod": "true",
+            "MixinConfigs":yourMixinConfig
+    )
+    appendix project.minecraft.version
+}
+*/
 }
