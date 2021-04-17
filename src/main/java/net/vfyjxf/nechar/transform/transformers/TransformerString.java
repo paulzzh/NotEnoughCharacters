@@ -15,14 +15,12 @@ public class TransformerString extends Transformer.Configurable {
         return new String[]{
                 "extracells.gui.GuiFluidTerminal:updateFluids",
                 "extracells.gui.GuiFluidStorage:updateFluids",
-                "witchinggadgets.client.ThaumonomiconIndexSearcher:buildEntryList"
+                "witchinggadgets.client.ThaumonomiconIndexSearcher:buildEntryList",
+                "appeng.client.gui.implementations.GuiInterfaceTerminal:refreshList",
+                "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm"
         };
     }
 
-    @Override
-    protected String[] getAdditional() {
-        return new String[0];
-    }
 
     @Override
     protected String getName() {

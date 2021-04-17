@@ -125,7 +125,6 @@ public interface Transformer {
 
         protected abstract String[] getDefault();
 
-        protected abstract String[] getAdditional();
 
         protected abstract String getName();
 
@@ -147,8 +146,6 @@ public interface Transformer {
         public void reload() {
             MethodDecoder mdt = new MethodDecoder();
             mdt.addAll(getDefault());
-            mdt.addAll(getAdditional());
-//            mdt.removeAll(JechConfig.listMethodBlacklist);
             md = mdt;
         }
     }
@@ -168,13 +165,6 @@ public interface Transformer {
             }
         }
 
-//        public void removeAll(String[] names) {
-//            for (String s : names) {
-//                String[] ss = s.split(":");
-//                if (ss.length == 2) methods.remove(ss[0], ss[1]);
-//                else logError(s);
-//            }
-//        }
 
         public Set<String> getMethodsForClass(String c) {
             return methods.get(c);

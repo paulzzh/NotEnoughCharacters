@@ -19,10 +19,6 @@ public class TransformerRegExp extends Transformer.Configurable {
         };
     }
 
-    @Override
-    protected String[] getAdditional() {
-        return new String[0];
-    }
 
     @Override
     protected String getName() {
