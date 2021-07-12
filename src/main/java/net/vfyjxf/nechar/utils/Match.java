@@ -1,7 +1,6 @@
 package net.vfyjxf.nechar.utils;
 
 import me.towdium.pinin.PinIn;
-import net.vfyjxf.nechar.NotEnoughCharacters;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

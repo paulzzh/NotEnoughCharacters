@@ -2,7 +2,21 @@
 
 一个改进 1.7.10 中 NEI 搜索功能的 mod，让 NEI 支持拼音搜索与 JEI 风格的关键字匹配
 
-由vfyjxf在之后的版本版本增加了其他mod的兼容
+同时也使一些其他的mod支持拼音搜索，目前支持的有：
+
+`Applied Energistics 2`
+
+`Extra Cells 2`
+
+`Wireless Crafting Terminal`
+
+`Steve's Factory Manager`
+
+`Witching Gadgets提供的魔导手册搜索`
+
+`GTNH版本Better Questing添加的任务搜索`
+
+
 
 ## 主要功能
 
@@ -11,6 +25,11 @@
 - `@` 前缀的关键字匹配物品所属的 mod，如匠魂中的「混凝土」可用 `@tcon hnt` 搜索到
 - `$` 前缀的关键字匹配矿物辞典，如所有的 GT 热金属锭可用 `$ingothot` 搜索到
 - `&` 前缀的关键字匹配物品 ID
+
+##TODO
+
+- 添加配置文件，使对应兼容可以在配置文件添加
+- 添加暴力兼容模式
 
 ## 注意事项
 
@@ -24,6 +43,7 @@
 
 PinIn 实现了一套基于 NFA 的拼音匹配算法……算了，我没有这方面的知识，而且词穷，反正就是：非常智能！性能很好！吹爆！
 
+ASM部分来自Towdium的[JustEnoughCharacters](https://github.com/Towdium/JustEnoughCharacters)
 ## 协议
 
 此项目是采用 GNU General Public License v3 or later 协议的自由软件。

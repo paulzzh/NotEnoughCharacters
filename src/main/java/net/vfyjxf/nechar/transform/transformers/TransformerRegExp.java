@@ -6,7 +6,7 @@ import org.objectweb.asm.tree.MethodNode;
 
 public class TransformerRegExp extends Transformer.Configurable {
 
-    public TransformerRegExp(){
+    public TransformerRegExp() {
         reload();
     }
 
@@ -40,7 +40,6 @@ public class TransformerRegExp extends Transformer.Configurable {
                 false, Opcodes.INVOKESTATIC, "(Ljava/lang/Object;)Z", "(Ljava/lang/String;)Z"
         );
     }
-
 
 
 }

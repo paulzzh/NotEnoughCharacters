@@ -17,7 +17,10 @@ public class TransformerString extends Transformer.Configurable {
                 "extracells.gui.GuiFluidStorage:updateFluids",
                 "witchinggadgets.client.ThaumonomiconIndexSearcher:buildEntryList",
                 "appeng.client.gui.implementations.GuiInterfaceTerminal:refreshList",
-                "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm"
+                "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm",
+                "vswe.stevesfactory.components.ComponentMenuLiquid:updateSearch",  // Steve's Factory Manager liquid search
+                "vswe.stevesfactory.components.ComponentMenuItem:updateSearch", // Steve's Factory Manager item search
+                "betterquesting.api2.client.gui.panels.lists.CanvasQuestSearch:queryMatches" //Better Questing quest  search --gtnh
         };
     }
 
