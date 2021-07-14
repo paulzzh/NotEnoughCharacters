@@ -1,5 +1,11 @@
+/*
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/transform/transformers/TransformerRegExp.java)
+ * 原文件协议为MIT
+ */
+
 package net.vfyjxf.nechar.transform.transformers;
 
+import net.vfyjxf.nechar.NechConfig;
 import net.vfyjxf.nechar.transform.Transformer;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodNode;
@@ -13,10 +19,7 @@ public class TransformerRegExp extends Transformer.Configurable {
 
     @Override
     protected String[] getDefault() {
-        return new String[]{
-                "appeng.client.me.ItemRepo:updateView",
-                "net.p455w0rd.wirelesscraftingterminal.client.me.ItemRepo:updateView"
-        };
+        return NechConfig.transformerRegExp;
     }
 
 

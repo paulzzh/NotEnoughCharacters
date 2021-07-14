@@ -1,3 +1,8 @@
+/*
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/core/JechClassTransformer.java)
+ * 原文件协议为MIT
+ */
+
 package net.vfyjxf.nechar.core;
 
 import net.minecraft.launchwrapper.IClassTransformer;

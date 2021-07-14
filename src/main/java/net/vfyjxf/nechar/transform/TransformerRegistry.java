@@ -1,3 +1,8 @@
+/*
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/transform/TransformerRegistry.java)
+ * 原文件协议为MIT
+ */
+
 package net.vfyjxf.nechar.transform;
 
 import net.vfyjxf.nechar.transform.transformers.TransformerRegExp;

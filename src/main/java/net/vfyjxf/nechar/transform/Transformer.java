@@ -1,7 +1,12 @@
+/*
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/transform/Transformer.java)
+ * 原文件协议为MIT
+ */
+
 package net.vfyjxf.nechar.transform;
 
 import com.google.common.collect.HashMultimap;
-import net.vfyjxf.nechar.NotEnoughCharacters;
+import net.moecraft.nechar.NotEnoughCharacters;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 

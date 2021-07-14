@@ -1,5 +1,11 @@
+/*
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/transform/transformers/TransformerString.java)
+ * 原文件协议为MIT
+ */
+
 package net.vfyjxf.nechar.transform.transformers;
 
+import net.vfyjxf.nechar.NechConfig;
 import net.vfyjxf.nechar.transform.Transformer;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodNode;
@@ -12,16 +18,7 @@ public class TransformerString extends Transformer.Configurable {
 
     @Override
     protected String[] getDefault() {
-        return new String[]{
-                "extracells.gui.GuiFluidTerminal:updateFluids",
-                "extracells.gui.GuiFluidStorage:updateFluids",
-                "witchinggadgets.client.ThaumonomiconIndexSearcher:buildEntryList",
-                "appeng.client.gui.implementations.GuiInterfaceTerminal:refreshList",
-                "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm",
-                "vswe.stevesfactory.components.ComponentMenuLiquid:updateSearch",  // Steve's Factory Manager liquid search
-                "vswe.stevesfactory.components.ComponentMenuItem:updateSearch", // Steve's Factory Manager item search
-                "betterquesting.api2.client.gui.panels.lists.CanvasQuestSearch:queryMatches" //Better Questing quest  search --gtnh
-        };
+        return NechConfig.transformerString;
     }
 
 
