@@ -7,13 +7,12 @@ package net.vfyjxf.nechar.transform;
 
 import com.google.common.collect.HashMultimap;
 import net.moecraft.nechar.NotEnoughCharacters;
+import net.vfyjxf.nechar.NechConfig;
 import org.objectweb.asm.*;
 import org.objectweb.asm.tree.*;
 
 import javax.annotation.Nullable;
-import java.util.Iterator;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @SuppressWarnings("SameParameterValue")
 public interface Transformer {
@@ -112,6 +111,7 @@ public interface Transformer {
     byte[] transform(byte[] bytes);
 
     abstract class Default implements Transformer {
+        @Override
         public byte[] transform(byte[] bytes) {
             ClassNode classNode = new ClassNode();
             ClassReader classReader = new ClassReader(bytes);
@@ -130,6 +130,7 @@ public interface Transformer {
 
         protected abstract String[] getDefault();
 
+        protected abstract String[] getAdditional();
 
         protected abstract String getName();
 
@@ -151,6 +152,8 @@ public interface Transformer {
         public void reload() {
             MethodDecoder mdt = new MethodDecoder();
             mdt.addAll(getDefault());
+            mdt.addAll(getAdditional());
+            mdt.removeAll(NechConfig.transformerMethodBlackList);
             md = mdt;
         }
     }
@@ -170,6 +173,13 @@ public interface Transformer {
             }
         }
 
+        public void removeAll(String[] names) {
+            for (String s : names) {
+                String[] ss = s.split(":");
+                if (ss.length == 2) methods.remove(ss[0], ss[1]);
+                else logError(s);
+            }
+        }
 
         public Set<String> getMethodsForClass(String c) {
             return methods.get(c);

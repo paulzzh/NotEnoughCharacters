@@ -18,7 +18,12 @@ public class TransformerString extends Transformer.Configurable {
 
     @Override
     protected String[] getDefault() {
-        return NechConfig.transformerString;
+        return NechConfig.defaultTransformerStringList;
+    }
+
+    @Override
+    protected String[] getAdditional() {
+        return NechConfig.transformerStringAdditionalList;
     }
 
 

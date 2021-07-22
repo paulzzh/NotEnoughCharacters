@@ -19,7 +19,12 @@ public class TransformerRegExp extends Transformer.Configurable {
 
     @Override
     protected String[] getDefault() {
-        return NechConfig.transformerRegExp;
+        return NechConfig.defaultTransformerRegExp;
+    }
+
+    @Override
+    protected String[] getAdditional() {
+        return NechConfig.transformerRegExpAdditionalList;
     }
 
 
