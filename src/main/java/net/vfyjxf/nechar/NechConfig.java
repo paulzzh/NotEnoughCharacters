@@ -30,7 +30,8 @@ public class NechConfig {
             "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm", //Applied-Energistics-2 InterfaceTerminal
             "vswe.stevesfactory.components.ComponentMenuLiquid:updateSearch",  // Steve's Factory Manager liquid search
             "vswe.stevesfactory.components.ComponentMenuItem:updateSearch", // Steve's Factory Manager item search
-            "betterquesting.api2.client.gui.panels.lists.CanvasQuestSearch:queryMatches" //Better Questing quest  search --gtnh
+            "betterquesting.api2.client.gui.panels.lists.CanvasQuestSearch:queryMatches", //Better Questing quest  search --gtnh
+            "me.towdium.jecalculation.utils.Utilities$I18n:contains"
     };
 
     public static void loadConfig(File configFile) {
