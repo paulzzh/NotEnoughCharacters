@@ -3,21 +3,16 @@ package net.moecraft.nechar;
 import codechicken.nei.api.ItemFilter;
 import codechicken.nei.api.ItemInfo;
 import cpw.mods.fml.common.registry.GameRegistry;
-import me.towdium.pinin.PinIn;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import static net.moecraft.nechar.NotEnoughCharacters.context;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class NecharSearchFilter implements ItemFilter {
-    // TODO: provide settings for fuzzy pinyin
-    protected static final PinIn context = new PinIn();
 
-    static {
-        context.config().fU2V(true).commit();
-    }
 
     protected boolean invalid = false;
 
@@ -125,4 +120,5 @@ public class NecharSearchFilter implements ItemFilter {
 
         return true;
     }
+
 }

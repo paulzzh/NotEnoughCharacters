@@ -5,7 +5,7 @@
 
 package net.vfyjxf.nechar.utils;
 
-import me.towdium.pinin.PinIn;
+import static net.moecraft.nechar.NotEnoughCharacters.context;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,11 +13,6 @@ import java.util.regex.Pattern;
 public class Match {
 
     static final Pattern p = Pattern.compile("a");
-    public static final PinIn context = new PinIn();
-
-    static {
-        context.config().fU2V(true).commit();
-    }
 
     public static boolean isChinese(CharSequence s) {
         for (int i = s.length() - 1; i >= 0; i--) {
