@@ -5,7 +5,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import me.towdium.pinin.PinIn;
 import net.minecraft.client.Minecraft;
 import net.vfyjxf.nechar.NechConfig;
-import net.vfyjxf.nechar.utils.Match;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +17,8 @@ public class NotEnoughCharacters {
     public static final String VERSION = NotEnoughCharacters.class.getPackage().getImplementationVersion();
     public static final Logger logger = LogManager.getLogger("NotEnoughCharacters");
 
-    public static final PinIn context = new PinIn().config().accelerate(true).commit();
+    public static final PinIn context = new PinIn();
+
 
     private static void onConfigChange() {
         context.config()

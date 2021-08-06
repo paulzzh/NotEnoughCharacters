@@ -26,9 +26,8 @@ public class Match {
     }
 
     public static boolean contains(String s, CharSequence cs) {
-        boolean b = context.contains(s, cs.toString());
-//            NotEnoughCharacters.logger.info("contains(" + s + ',' + cs + ")->" + b);
-        return b;
+        //            NotEnoughCharacters.logger.info("contains(" + s + ',' + cs + ")->" + b);
+        return context.contains(s, cs.toString());
     }
 
 

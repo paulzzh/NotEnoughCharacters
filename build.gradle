@@ -12,11 +12,6 @@ buildscript {
     }
 }
 
-repositories {
-    flatDir {
-        dirs 'libs'
-    }
-}
 
 apply plugin: 'forge'
 
@@ -40,10 +35,6 @@ repositories {
         name 'chickenbones'
         url 'http://chickenbones.net/maven'
     }
-    maven {
-        name 'cursemaven'
-        url "https://www.cursemaven.com"
-    }
     flatDir {
         dirs 'libs'
     }
@@ -61,7 +52,7 @@ dependencies {
     compile 'codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev'
     compile 'codechicken:CodeChickenCore:1.7.10-1.0.7.+:dev'
 
-    shade 'me.towdium:PinIn:1.2.0-all'
+    shade "com.github.towdium:pinin:${verpinin}-all"
 
 }
 
@@ -100,17 +91,17 @@ artifacts {
 }
 
 jar {
-    configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
-        from(zipTree(artifact)) {
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)){
             exclude 'META-INF', 'META-INF/**'
         }
-
-        manifest.attributes(
-                'FMLCorePlugin': 'net.vfyjxf.nechar.core.NechCorePlugin',
-                'FMLCorePluginContainsFMLMod': 'true',
-                'ForceLoadAsMod': 'true'
-        )
-
-        appendix project.minecraft.version
     }
+
+    manifest.attributes(
+            'FMLCorePlugin': 'net.vfyjxf.nechar.core.NechCorePlugin',
+            'FMLCorePluginContainsFMLMod': 'true',
+            'ForceLoadAsMod': 'true'
+    )
+
+    appendix project.minecraft.version
 }
