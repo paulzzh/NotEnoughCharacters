@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-1.4.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-1.4.5-SNAPSHOT'
     }
 }
 
@@ -31,10 +31,12 @@ minecraft {
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         name 'chickenbones'
         url 'http://chickenbones.net/maven'
     }
+    maven { url 'https://jitpack.io' }
     flatDir {
         dirs 'libs'
     }
@@ -52,7 +54,7 @@ dependencies {
     compile 'codechicken:CodeChickenLib:1.7.10-1.1.3.138:dev'
     compile 'codechicken:CodeChickenCore:1.7.10-1.0.7.+:dev'
 
-    shade "com.github.towdium:pinin:${verpinin}-all"
+    shade "com.github.towdium:pinin:${verpinin}"
 
 }
 
