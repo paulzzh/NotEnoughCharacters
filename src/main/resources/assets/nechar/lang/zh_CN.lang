@@ -1,0 +1,3 @@
+chat.start=开始分析模组文件。
+chat.saved=分析报告已储存至 logs/necharacters-profiler.txt。
+chat.save_error=写入文件时出现了一个问题。

@@ -33,7 +33,8 @@ public class NechConfig {
             "betterquesting.api2.client.gui.panels.lists.CanvasQuestSearch:queryMatches", //Better Questing quest  search --gtnh
             "me.towdium.jecalculation.utils.Utilities$I18n:contains",// Just Enough Calculation
             "logisticspipes.gui.orderer.GuiOrderer:isSearched",  // Logistics Pipes orderer
-            "logisticspipes.gui.orderer.GuiRequestTable:isSearched"  // Logistics Pipes request table
+            "logisticspipes.gui.orderer.GuiRequestTable:isSearched",  // Logistics Pipes request table
+            "mrtjp.projectred.transportation.GuiRequester$$anonfun$stringMatch$1$1:apply" // ProjectRed Expansion Routed Request pipe
     };
 
     public static void loadConfig(File configFile) {

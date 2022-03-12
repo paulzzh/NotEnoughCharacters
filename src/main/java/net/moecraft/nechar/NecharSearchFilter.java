@@ -6,7 +6,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import static net.moecraft.nechar.NotEnoughCharacters.context;
+import static net.moecraft.nechar.NotEnoughCharacters.CONTEXT;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -113,7 +113,7 @@ public class NecharSearchFilter implements ItemFilter {
 
         String name = ItemInfo.getSearchName(itemStack);
         for (String keyword : keywords) {
-            if (!context.contains(name, keyword)) {
+            if (!CONTEXT.contains(name, keyword)) {
                 return false;
             }
         }

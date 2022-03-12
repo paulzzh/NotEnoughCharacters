@@ -5,7 +5,7 @@
 
 package net.vfyjxf.nechar.utils;
 
-import static net.moecraft.nechar.NotEnoughCharacters.context;
+import static net.moecraft.nechar.NotEnoughCharacters.CONTEXT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -27,12 +27,18 @@ public class Match {
 
     public static boolean contains(String s, CharSequence cs) {
         //            NotEnoughCharacters.logger.info("contains(" + s + ',' + cs + ")->" + b);
-        return context.contains(s, cs.toString());
+        return CONTEXT.contains(s, cs.toString());
     }
 
 
     public static Matcher matcher(Pattern test, CharSequence name) {
-        return matches(name.toString(), test.toString()) ? p.matcher("a") : test.matcher(name);
+        boolean result;
+        if ((test.flags() & Pattern.CASE_INSENSITIVE) != 0 || (test.flags() & Pattern.UNICODE_CASE) != 0) {
+            result = matches(name.toString().toLowerCase(), test.toString().toLowerCase());
+        } else {
+            result = matches(name.toString(), test.toString());
+        }
+        return result ? p.matcher("a") : p.matcher("");
     }
 
     public static boolean matches(String s1, String s2) {

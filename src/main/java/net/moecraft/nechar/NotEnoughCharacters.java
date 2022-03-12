@@ -1,10 +1,13 @@
 package net.moecraft.nechar;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import me.towdium.pinin.DictLoader;
 import me.towdium.pinin.PinIn;
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.ClientCommandHandler;
+import net.vfyjxf.nechar.NechCommand;
 import net.vfyjxf.nechar.NechConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +22,7 @@ public class NotEnoughCharacters {
     public static final String VERSION = NotEnoughCharacters.class.getPackage().getImplementationVersion();
     public static final Logger logger = LogManager.getLogger("NotEnoughCharacters");
 
-    public static final PinIn context = new PinIn(new CustomDictLoader());
+    public static final PinIn CONTEXT = new PinIn(new CustomDictLoader()).config().accelerate(true).commit();
 
     private static class CustomDictLoader extends DictLoader.Default {
         @Override
@@ -43,14 +46,15 @@ public class NotEnoughCharacters {
     }
 
     private static void onConfigChange() {
-        context.config()
+        CONTEXT.config()
                 .fZh2Z(NechConfig.EnableFZh2Z)
                 .fSh2S(NechConfig.EnableFSh2S)
                 .fCh2C(NechConfig.EnableFCh2C)
                 .fAng2An(NechConfig.EnableFAng2An)
                 .fIng2In(NechConfig.EnableFIng2In)
                 .fEng2En(NechConfig.EnableFEng2En)
-                .fU2V(NechConfig.EnableFU2V).commit();
+                .fU2V(NechConfig.EnableFU2V)
+                .commit();
     }
 
 
@@ -59,5 +63,10 @@ public class NotEnoughCharacters {
         logger.info("Not Enough Characters - v" + VERSION);
         NechConfig.loadConfig(new File(Minecraft.getMinecraft().mcDataDir, "config/NotEnoughCharacters.cfg"));
         onConfigChange();
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
+        ClientCommandHandler.instance.registerCommand(new NechCommand());
     }
 }
