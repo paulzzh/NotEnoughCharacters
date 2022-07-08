@@ -26,6 +26,7 @@ public class NechConfig {
             "extracells.gui.GuiFluidTerminal:updateFluids",//Extra Cells FluidTerminal search
             "extracells.gui.GuiFluidStorage:updateFluids", //Extra Cells wireless terminal search
             "witchinggadgets.client.ThaumonomiconIndexSearcher:buildEntryList", //Witching Gadgets Thaumonomicon search
+            "net.glease.tc4tweak.modules.researchBrowser.ThaumonomiconIndexSearcher:buildEntryList", // TC4 Tweaks Thaumonomicon search
             "appeng.client.gui.implementations.GuiInterfaceTerminal:refreshList", //Applied-Energistics-2 InterfaceTerminal
             "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm", //Applied-Energistics-2 InterfaceTerminal
             "vswe.stevesfactory.components.ComponentMenuLiquid:updateSearch",  // Steve's Factory Manager liquid search
