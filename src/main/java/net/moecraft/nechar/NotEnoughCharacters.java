@@ -54,6 +54,7 @@ public class NotEnoughCharacters {
                 .fIng2In(NechConfig.EnableFIng2In)
                 .fEng2En(NechConfig.EnableFEng2En)
                 .fU2V(NechConfig.EnableFU2V)
+                .keyboard(NechConfig.KeyboardType)
                 .commit();
     }
 
