@@ -31,6 +31,7 @@
 - `$` 前缀的关键字匹配矿物辞典，如所有的 GT 热金属锭可用 `$ingothot` 搜索到
 - `&` 前缀的关键字匹配物品 ID
 - 添加了模糊音的配置文件
+- 添加了大千注音和小鹤/自然码双拼键盘选项的配置文件
 - 可以在配置文件来添加对应mod的兼容(基于[JustEnoughCharacters](https://github.com/Towdium/JustEnoughCharacters))
 
 ## 注意事项

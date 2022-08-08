@@ -1,5 +1,6 @@
 package net.vfyjxf.nechar;
 
+import me.towdium.pinin.Keyboard;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -14,7 +15,7 @@ public class NechConfig {
     public static boolean EnableFIng2In = false;
     public static boolean EnableFEng2En = false;
     public static boolean EnableFU2V = false;
-
+    public static Keyboard KeyboardType = Keyboard.QUANPIN;
     public static String[] transformerRegExpAdditionalList = new String[0];
     public static String[] transformerStringAdditionalList = new String[0];
     public static String[] transformerMethodBlackList = new String[0];
@@ -71,6 +72,23 @@ public class NechConfig {
         EnableFAng2An = config.get("fuzzy", "EnableFAng2An", false, "Set to true to enable fuzzy Ang <=> An").getBoolean();
         EnableFIng2In = config.get("fuzzy", "EnableFIng2In", false, "Set to true to enable fuzzy Ing <=> In").getBoolean();
         EnableFEng2En = config.get("fuzzy", "EnableFEng2En", false, "Set to true to enable fuzzy Eng <=> En").getBoolean();
+
+        // keyboard type config
+        String keyboardTypeString = config.get("general", "KeyboardType", "quanpin", "Set the type of the keyboard, acceptable options are: quanpin, daqian, xiaohe and ziranma.").getString();
+        switch (keyboardTypeString) {
+            case "daqian":
+                KeyboardType = Keyboard.DAQIAN;
+                break;
+            case "xiaohe":
+                KeyboardType = Keyboard.XIAOHE;
+                break;
+            case "ziranma":
+                KeyboardType = Keyboard.ZIRANMA;
+                break;
+            default:
+                KeyboardType = Keyboard.QUANPIN;
+        }
+
         if (config.hasChanged()) config.save();
     }
 }
