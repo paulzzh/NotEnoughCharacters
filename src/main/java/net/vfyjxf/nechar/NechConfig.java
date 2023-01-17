@@ -21,7 +21,8 @@ public class NechConfig {
     public static String[] transformerMethodBlackList = new String[0];
     public static String[] defaultTransformerRegExp = new String[]{
             "appeng.client.me.ItemRepo:updateView",//Applied-Energistics-2 search
-            "net.p455w0rd.wirelesscraftingterminal.client.me.ItemRepo:updateView"//WirelessCraftingTerminal search
+            "net.p455w0rd.wirelesscraftingterminal.client.me.ItemRepo:updateView",//WirelessCraftingTerminal search
+            "com.glodblock.github.client.me.FluidRepo:updateView"//Ae2fc
     };
     public static String[] defaultTransformerStringList = new String[]{
             "extracells.gui.GuiFluidTerminal:updateFluids",//Extra Cells FluidTerminal search
