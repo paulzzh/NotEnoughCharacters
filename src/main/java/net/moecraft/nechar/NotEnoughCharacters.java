@@ -45,7 +45,7 @@ public class NotEnoughCharacters {
         }
     }
 
-    private static void onConfigChange() {
+    public static void onConfigChange() {
         CONTEXT.config()
                 .fZh2Z(NechConfig.EnableFZh2Z)
                 .fSh2S(NechConfig.EnableFSh2S)
@@ -54,7 +54,7 @@ public class NotEnoughCharacters {
                 .fIng2In(NechConfig.EnableFIng2In)
                 .fEng2En(NechConfig.EnableFEng2En)
                 .fU2V(NechConfig.EnableFU2V)
-                .keyboard(NechConfig.KeyboardType)
+                .keyboard(NechConfig.KeyboardType.get())
                 .commit();
     }
 

@@ -2,12 +2,14 @@ package net.vfyjxf.nechar;
 
 import me.towdium.pinin.Keyboard;
 import net.minecraftforge.common.config.Configuration;
+import net.moecraft.nechar.NotEnoughCharacters;
 
 import java.io.File;
 
 
 public class NechConfig {
 
+    public static boolean enableVerbose = false;
     public static boolean EnableFZh2Z = false;
     public static boolean EnableFSh2S = false;
     public static boolean EnableFCh2C = false;
@@ -15,7 +17,7 @@ public class NechConfig {
     public static boolean EnableFIng2In = false;
     public static boolean EnableFEng2En = false;
     public static boolean EnableFU2V = false;
-    public static Keyboard KeyboardType = Keyboard.QUANPIN;
+    public static Spell KeyboardType = Spell.QUANPIN;
     public static String[] transformerRegExpAdditionalList = new String[0];
     public static String[] transformerStringAdditionalList = new String[0];
     public static String[] transformerMethodBlackList = new String[0];
@@ -37,7 +39,9 @@ public class NechConfig {
             "me.towdium.jecalculation.utils.Utilities$I18n:contains",// Just Enough Calculation
             "logisticspipes.gui.orderer.GuiOrderer:isSearched",  // Logistics Pipes orderer
             "logisticspipes.gui.orderer.GuiRequestTable:isSearched",  // Logistics Pipes request table
-            "mrtjp.projectred.transportation.GuiRequester$$anonfun$stringMatch$1$1:apply" // ProjectRed Expansion Routed Request pipe
+            "mrtjp.projectred.transportation.GuiRequester$$anonfun$stringMatch$1$1:apply", // ProjectRed Expansion Routed Request pipe
+            "com.glodblock.github.client.gui.GuiInterfaceTerminalWireless:refreshList", // ae2fc 2 Wireless Interface Terminal
+            "com.glodblock.github.client.gui.GuiInterfaceTerminalWireless:itemStackMatchesSearchTerm", //ae2fc Wireless Interface Terminal
     };
 
     public static void loadConfig(File configFile) {
@@ -76,20 +80,38 @@ public class NechConfig {
 
         // keyboard type config
         String keyboardTypeString = config.get("general", "KeyboardType", "quanpin", "Set the type of the keyboard, acceptable options are: quanpin, daqian, xiaohe and ziranma.").getString();
-        switch (keyboardTypeString) {
-            case "daqian":
-                KeyboardType = Keyboard.DAQIAN;
-                break;
-            case "xiaohe":
-                KeyboardType = Keyboard.XIAOHE;
-                break;
-            case "ziranma":
-                KeyboardType = Keyboard.ZIRANMA;
-                break;
-            default:
-                KeyboardType = Keyboard.QUANPIN;
+        try{
+            KeyboardType = Spell.valueOf(keyboardTypeString.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            NotEnoughCharacters.logger.error("Invalid keyboard type: " + keyboardTypeString);
+            //use default value
+            KeyboardType = Spell.QUANPIN;
         }
 
         if (config.hasChanged()) config.save();
     }
+
+    public static void setKeyboard(Spell keyboard) {
+        KeyboardType = keyboard;
+        NotEnoughCharacters.onConfigChange();
+    }
+
+    public enum Spell {
+        QUANPIN(Keyboard.QUANPIN), DAQIAN(Keyboard.DAQIAN),
+        XIAOHE(Keyboard.XIAOHE), ZIRANMA(Keyboard.ZIRANMA),
+        SOUGOU(Keyboard.SOUGOU), GUOBIAO(Keyboard.GUOBIAO),
+        MICROSOFT(Keyboard.MICROSOFT), PINYINPP(Keyboard.PINYINPP),
+        ZIGUANG(Keyboard.ZIGUANG);
+
+        public final Keyboard keyboard;
+
+        Spell(Keyboard keyboard) {
+            this.keyboard = keyboard;
+        }
+
+        public Keyboard get() {
+            return keyboard;
+        }
+    }
+
 }

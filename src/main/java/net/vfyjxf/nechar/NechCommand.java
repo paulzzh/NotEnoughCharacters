@@ -1,12 +1,11 @@
 package net.vfyjxf.nechar;
 
 import com.google.gson.GsonBuilder;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatComponentTranslation;
 import net.vfyjxf.nechar.utils.Profiler;
 
 import java.io.FileOutputStream;
@@ -44,11 +43,65 @@ public class NechCommand extends CommandBase {
             t.setPriority(Thread.MIN_PRIORITY);
             t.start();
         }
+        else if (args.length == 2 && "verbose".equals(args[0])) {
+            switch (args[1].toLowerCase()) {
+                case "true":
+                    NechConfig.enableVerbose = true;
+                    break;
+                case "false":
+                    NechConfig.enableVerbose = false;
+                    break;
+                default:
+                    sender.addChatMessage(new ChatComponentTranslation("command.unknown"));
+                    break;
+            }
+        } else if (args.length == 2 && "keyboard".equals(args[0])) {
+            switch (args[1].toLowerCase()) {
+                case "quanpin":
+                    NechConfig.setKeyboard(NechConfig.Spell.QUANPIN);
+                    break;
+                case "daqian":
+                    NechConfig.setKeyboard(NechConfig.Spell.DAQIAN);
+                    break;
+                case "xiaohe":
+                    NechConfig.setKeyboard(NechConfig.Spell.XIAOHE);
+                    break;
+                case "ziranma":
+                    NechConfig.setKeyboard(NechConfig.Spell.ZIRANMA);
+                    break;
+                case "sougou":
+                    NechConfig.setKeyboard(NechConfig.Spell.SOUGOU);
+                    break;
+                case "guobiao":
+                    NechConfig.setKeyboard(NechConfig.Spell.GUOBIAO);
+                    break;
+                case "microsoft":
+                    NechConfig.setKeyboard(NechConfig.Spell.MICROSOFT);
+                    break;
+                case "pinyinjiajia":
+                    NechConfig.setKeyboard(NechConfig.Spell.PINYINPP);
+                    break;
+                case "ziguang":
+                    NechConfig.setKeyboard(NechConfig.Spell.ZIGUANG);
+                    break;
+                default:
+                    sender.addChatMessage(new ChatComponentTranslation("command.unknown"));
+                    break;
+            }
+        } else {
+            sender.addChatMessage(new ChatComponentTranslation("command.unknown"));
+        }
     }
 
     @Override
     public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-        return args.length <= 1 ? CommandBase.getListOfStringsMatchingLastWord(args, "profile") : null;
+        if (args.length == 1)
+            return getListOfStringsMatchingLastWord(args, "profile", "verbose", "keyboard");
+        else if (args.length == 2 && "verbose".equals(args[0]))
+            return getListOfStringsMatchingLastWord(args, "true", "false");
+        else if (args.length == 2 && "keyboard".equals(args[0]))
+            return getListOfStringsMatchingLastWord(args, "quanpin", "daqian", "xiaohe", "ziranma", "sougou", "guobiao", "microsoft", "pinyinjiajia", "ziguang");
+        else return null;
     }
 
     @Override
