@@ -24,7 +24,9 @@ public class NechConfig {
     public static String[] defaultTransformerRegExp = new String[]{
             "appeng.client.me.ItemRepo:updateView",//Applied-Energistics-2 search
             "net.p455w0rd.wirelesscraftingterminal.client.me.ItemRepo:updateView",//WirelessCraftingTerminal search
-            "com.glodblock.github.client.me.FluidRepo:updateView"//Ae2fc
+            "com.glodblock.github.client.me.FluidRepo:updateView",//Ae2fc
+            "com.glodblock.github.client.me.EssentiaRepo:updateView"
+
     };
     public static String[] defaultTransformerStringList = new String[]{
             "extracells.gui.GuiFluidTerminal:updateFluids",//Extra Cells FluidTerminal search
@@ -42,6 +44,12 @@ public class NechConfig {
             "mrtjp.projectred.transportation.GuiRequester$$anonfun$stringMatch$1$1:apply", // ProjectRed Expansion Routed Request pipe
             "com.glodblock.github.client.gui.GuiInterfaceTerminalWireless:refreshList", // ae2fc 2 Wireless Interface Terminal
             "com.glodblock.github.client.gui.GuiInterfaceTerminalWireless:itemStackMatchesSearchTerm", //ae2fc Wireless Interface Terminal
+            "com.glodblock.github.client.gui.GuiInterfaceWireless$InterfaceWirelessList:updateList", //ae2fc Wireless Interface Terminal
+            "com.glodblock.github.client.gui.GuiInterfaceWireless:itemStackMatchesSearchTerm",
+            "com.glodblock.github.client.gui.GuiLevelTerminal$LevelTerminalList:update",
+            "com.glodblock.github.client.gui.GuiLevelTerminal:itemStackMatchesSearchTerm",
+            "appeng.client.gui.implementations.GuiInterfaceTerminal$InterfaceTerminalList:update",
+            "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm"
     };
 
     public static void loadConfig(File configFile) {
