@@ -49,7 +49,8 @@ public class NechConfig {
             "com.glodblock.github.client.gui.GuiLevelTerminal$LevelTerminalList:update",
             "com.glodblock.github.client.gui.GuiLevelTerminal:itemStackMatchesSearchTerm",
             "appeng.client.gui.implementations.GuiInterfaceTerminal$InterfaceTerminalList:update",
-            "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm"
+            "appeng.client.gui.implementations.GuiInterfaceTerminal:itemStackMatchesSearchTerm",
+            "com.glodblock.github.client.gui.GuiInterfaceWireless$InterfaceWirelessList:update"
     };
 
     public static void loadConfig(File configFile) {
