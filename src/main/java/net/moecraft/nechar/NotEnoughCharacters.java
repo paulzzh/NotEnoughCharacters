@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.function.BiConsumer;
 
 
-@Mod(modid = NotEnoughCharacters.ID, useMetadata = true)
+@Mod(modid = NotEnoughCharacters.ID, acceptableRemoteVersions="*", useMetadata = true)
 public class NotEnoughCharacters {
     public static final String ID = "nechar";
     public static final String VERSION = NotEnoughCharacters.class.getPackage().getImplementationVersion();
