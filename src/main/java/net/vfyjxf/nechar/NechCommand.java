@@ -1,6 +1,10 @@
 package net.vfyjxf.nechar;
 
-import com.google.gson.GsonBuilder;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.List;
+
 import net.minecraft.client.resources.I18n;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -8,10 +12,7 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatComponentTranslation;
 import net.vfyjxf.nechar.utils.Profiler;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.util.List;
+import com.google.gson.GsonBuilder;
 
 public class NechCommand extends CommandBase {
 
@@ -33,7 +34,10 @@ public class NechCommand extends CommandBase {
                 Profiler.Report r = Profiler.run();
                 try (FileOutputStream fos = new FileOutputStream("logs/necharacters-profiler.txt")) {
                     OutputStreamWriter osw = new OutputStreamWriter(fos);
-                    osw.write(new GsonBuilder().setPrettyPrinting().create().toJson(r));
+                    osw.write(
+                        new GsonBuilder().setPrettyPrinting()
+                            .create()
+                            .toJson(r));
                     osw.flush();
                     sender.addChatMessage(new ChatComponentText(I18n.format("chat.saved")));
                 } catch (IOException e) {
@@ -42,8 +46,7 @@ public class NechCommand extends CommandBase {
             });
             t.setPriority(Thread.MIN_PRIORITY);
             t.start();
-        }
-        else if (args.length == 2 && "verbose".equals(args[0])) {
+        } else if (args.length == 2 && "verbose".equals(args[0])) {
             switch (args[1].toLowerCase()) {
                 case "true":
                     NechConfig.enableVerbose = true;
@@ -95,12 +98,20 @@ public class NechCommand extends CommandBase {
 
     @Override
     public List addTabCompletionOptions(ICommandSender sender, String[] args) {
-        if (args.length == 1)
-            return getListOfStringsMatchingLastWord(args, "profile", "verbose", "keyboard");
+        if (args.length == 1) return getListOfStringsMatchingLastWord(args, "profile", "verbose", "keyboard");
         else if (args.length == 2 && "verbose".equals(args[0]))
             return getListOfStringsMatchingLastWord(args, "true", "false");
-        else if (args.length == 2 && "keyboard".equals(args[0]))
-            return getListOfStringsMatchingLastWord(args, "quanpin", "daqian", "xiaohe", "ziranma", "sougou", "guobiao", "microsoft", "pinyinjiajia", "ziguang");
+        else if (args.length == 2 && "keyboard".equals(args[0])) return getListOfStringsMatchingLastWord(
+            args,
+            "quanpin",
+            "daqian",
+            "xiaohe",
+            "ziranma",
+            "sougou",
+            "guobiao",
+            "microsoft",
+            "pinyinjiajia",
+            "ziguang");
         else return null;
     }
 

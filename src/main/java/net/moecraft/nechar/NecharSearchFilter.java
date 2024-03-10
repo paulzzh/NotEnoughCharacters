@@ -1,18 +1,19 @@
 package net.moecraft.nechar;
 
-import codechicken.nei.api.ItemFilter;
-import codechicken.nei.api.ItemInfo;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 import static net.moecraft.nechar.NotEnoughCharacters.CONTEXT;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class NecharSearchFilter implements ItemFilter {
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
+import codechicken.nei.api.ItemFilter;
+import codechicken.nei.api.ItemInfo;
+import cpw.mods.fml.common.registry.GameRegistry;
+
+public class NecharSearchFilter implements ItemFilter {
 
     protected boolean invalid = false;
 
@@ -26,13 +27,13 @@ public class NecharSearchFilter implements ItemFilter {
         String[] pieces = searchText.split("\\s+");
 
         for (String piece : pieces) {
-            if (piece.isEmpty())
-                continue;
+            if (piece.isEmpty()) continue;
 
             switch (piece.charAt(0)) {
                 case '@':
                     if (mod == null) {
-                        mod = piece.substring(1).toLowerCase();
+                        mod = piece.substring(1)
+                            .toLowerCase();
                         continue;
                     } else {
                         invalid = true;
@@ -41,7 +42,8 @@ public class NecharSearchFilter implements ItemFilter {
 
                 case '&':
                     if (id == null) {
-                        id = piece.substring(1).toLowerCase();
+                        id = piece.substring(1)
+                            .toLowerCase();
                         continue;
                     } else {
                         invalid = true;
@@ -50,7 +52,8 @@ public class NecharSearchFilter implements ItemFilter {
 
                 case '$':
                     if (dict == null) {
-                        dict = piece.substring(1).toLowerCase();
+                        dict = piece.substring(1)
+                            .toLowerCase();
                         continue;
                     } else {
                         invalid = true;
@@ -64,11 +67,10 @@ public class NecharSearchFilter implements ItemFilter {
 
     @Override
     public boolean matches(ItemStack itemStack) {
-        return !invalid
-                && matchesMod(itemStack)
-                && matchesId(itemStack)
-                && matchesDict(itemStack)
-                && matchesKeywords(itemStack);
+        return !invalid && matchesMod(itemStack)
+            && matchesId(itemStack)
+            && matchesDict(itemStack)
+            && matchesKeywords(itemStack);
     }
 
     protected boolean matchesMod(ItemStack itemStack) {
@@ -78,7 +80,8 @@ public class NecharSearchFilter implements ItemFilter {
 
         GameRegistry.UniqueIdentifier itemId = GameRegistry.findUniqueIdentifierFor(itemStack.getItem());
 
-        return itemId != null && itemId.modId.toLowerCase().contains(mod);
+        return itemId != null && itemId.modId.toLowerCase()
+            .contains(mod);
     }
 
     protected boolean matchesId(ItemStack itemStack) {
@@ -88,7 +91,8 @@ public class NecharSearchFilter implements ItemFilter {
 
         String itemId = Item.itemRegistry.getNameForObject(itemStack.getItem());
 
-        return itemId.toLowerCase().contains(id);
+        return itemId.toLowerCase()
+            .contains(id);
     }
 
     protected boolean matchesDict(ItemStack itemStack) {
@@ -99,8 +103,9 @@ public class NecharSearchFilter implements ItemFilter {
         int[] oreIds = OreDictionary.getOreIDs(itemStack);
 
         for (int id : oreIds) {
-            if (OreDictionary.getOreName(id).toLowerCase().contains(dict))
-                return true;
+            if (OreDictionary.getOreName(id)
+                .toLowerCase()
+                .contains(dict)) return true;
         }
 
         return false;

@@ -1,5 +1,6 @@
 /*
- * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/jecharacters/transform/transformers/TransformerRegExp.java)
+ * 基于Towdium的JustEnoughCharacters(https://github.com/Towdium/JustEnoughCharacters/blob/1.12.0/src/main/java/me/towdium/
+ * jecharacters/transform/transformers/TransformerRegExp.java)
  * 原文件协议为MIT
  */
 
@@ -26,15 +27,18 @@ public class Match {
     }
 
     public static boolean contains(String s, CharSequence cs) {
-        //            NotEnoughCharacters.logger.info("contains(" + s + ',' + cs + ")->" + b);
+        // NotEnoughCharacters.logger.info("contains(" + s + ',' + cs + ")->" + b);
         return CONTEXT.contains(s, cs.toString());
     }
-
 
     public static Matcher matcher(Pattern test, CharSequence name) {
         boolean result;
         if ((test.flags() & Pattern.CASE_INSENSITIVE) != 0 || (test.flags() & Pattern.UNICODE_CASE) != 0) {
-            result = matches(name.toString().toLowerCase(), test.toString().toLowerCase());
+            result = matches(
+                name.toString()
+                    .toLowerCase(),
+                test.toString()
+                    .toLowerCase());
         } else {
             result = matches(name.toString(), test.toString());
         }

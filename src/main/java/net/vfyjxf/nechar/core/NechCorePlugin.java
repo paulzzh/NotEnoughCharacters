@@ -1,18 +1,19 @@
 package net.vfyjxf.nechar.core;
 
-import cpw.mods.fml.relauncher.IFMLCallHook;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-import net.vfyjxf.nechar.transform.TransformerRegistry;
-
 import java.util.Map;
 
+import net.vfyjxf.nechar.transform.TransformerRegistry;
+
+import cpw.mods.fml.relauncher.IFMLCallHook;
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 public class NechCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
+
     public static boolean INITIALIZED = false;
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{"net.vfyjxf.nechar.core.NechClassTransformer"};
+        return new String[] { "net.vfyjxf.nechar.core.NechClassTransformer" };
     }
 
     @Override
