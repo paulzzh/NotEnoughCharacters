@@ -18,6 +18,7 @@ public class NechConfig {
     public static boolean EnableFEng2En = false;
     public static boolean EnableFU2V = false;
     public static Spell KeyboardType = Spell.QUANPIN;
+    public static String[] neiAllowedLanguages = new String[0];
     public static String[] transformerRegExpAdditionalList = new String[0];
     public static String[] transformerStringAdditionalList = new String[0];
     public static String[] transformerMethodBlackList = new String[0];
@@ -141,6 +142,11 @@ public class NechConfig {
             // use default value
             KeyboardType = Spell.QUANPIN;
         }
+
+        // nei
+        neiAllowedLanguages = config
+            .get("nei", "allowedLanguages", new String[] { "zh_CN", "zh_TW" }, "List of languages PinIn is used for")
+            .getStringList();
 
         if (config.hasChanged()) config.save();
     }
